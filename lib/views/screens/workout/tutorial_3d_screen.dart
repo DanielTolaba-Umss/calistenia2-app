@@ -84,7 +84,7 @@ class _Tutorial3DScreenState extends State<Tutorial3DScreen> {
                   src: widget.modelPath,
                   alt: 'Modelo 3D de ${widget.exercise.name}',
                   autoPlay: true,
-                  autoRotate: true,
+                  autoRotate: false,
                   cameraControls: true,
                   ar: true,
                   arModes: ['scene-viewer', 'webxr', 'quick-look'],

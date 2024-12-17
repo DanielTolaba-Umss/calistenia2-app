@@ -8,8 +8,6 @@ import '../../../controllers/exercise_controller.dart';
 import '../workout/timer_screen.dart';
 import '../workout/tutorial_3d_screen.dart';
 
-
-
 class WorkoutScreen extends StatefulWidget {
   final ExerciseModel exercise;
 
@@ -39,6 +37,13 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         _isFavorite = isFav;
       });
     }
+  }
+
+  String getModelFileName(String exerciseName) {
+    String fileName = exerciseName.toLowerCase();
+    fileName = fileName.replaceAll(' ', '_');
+    fileName = fileName.replaceAll(RegExp(r'[^\w\s-]'), '');
+    return 'assets/models/$fileName.glb';
   }
 
   @override
@@ -84,49 +89,43 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
 
                 // Carrusel de imágenes
                 if (widget.exercise.images.isNotEmpty)
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 250,
-                        child: Swiper(
-                          itemBuilder: (context, index) {
-                            return Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
+                  SizedBox(
+                    height: 250,
+                    child: Swiper(
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
                               ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: Image.asset(
-                                  widget.exercise.images[index],
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            );
-                          },
-                          itemCount: widget.exercise.images.length,
-                          pagination: SwiperPagination(
-                            builder: DotSwiperPaginationBuilder(
-                              activeColor: Colors.blue,
-                              color: Colors.grey.withOpacity(0.5),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.asset(
+                              widget.exercise.images[index],
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          control: const SwiperControl(
-                            color: Colors.blue,
-                          ),
-                          autoplay: true,
-                          autoplayDelay: 3000,
-                          duration: 800,
+                        );
+                      },
+                      itemCount: widget.exercise.images.length,
+                      pagination: SwiperPagination(
+                        builder: DotSwiperPaginationBuilder(
+                          activeColor: Colors.blue,
+                          color: Colors.grey.withOpacity(0.5),
                         ),
                       ),
-                    ],
+                      control: const SwiperControl(color: Colors.blue),
+                      autoplay: true,
+                      autoplayDelay: 3000,
+                      duration: 800,
+                    ),
                   )
                 else
                   Container(
@@ -236,25 +235,30 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   child: Row(
                     children: [
                       Expanded(
+                        flex: 3,  // Aumentamos el espacio para Tutorial
                         child: ActionButton(
                           text: 'Tutorial',
                           icon: Icons.play_circle_outline,
                           onPressed: () {
-                            String modelPath = 'assets/models/${widget.exercise.name.toLowerCase()}.glb';
+                            String modelPath = getModelFileName(widget.exercise.name);
+                            print('Intentando cargar modelo desde: $modelPath');
+                            print('Nombre del ejercicio: ${widget.exercise.name}');
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => Tutorial3DScreen(
                                   exercise: widget.exercise,
-                                  modelPath: 'assets/models/${widget.exercise.name.toLowerCase().replaceAll(' ', '_')}.glb',
+                                  modelPath: modelPath,
                                 ),
                               ),
                             );
                           },
                         ),
                       ),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 5),
                       Expanded(
+                        flex: 3,  // Reducimos un poco el espacio de Iniciar
                         child: ActionButton(
                           text: 'Iniciar',
                           icon: Icons.timer,
@@ -271,21 +275,24 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                           },
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      ActionButton(
-                        text: _isFavorite ? 'Quitar' : 'Agregar',
-                        icon: _isFavorite ? Icons.favorite : Icons.favorite_border,
-                        isSmall: true,
-                        color: _isFavorite ? Colors.red : Colors.blue,
-                        onPressed: () async {
-                          final exerciseController = context.read<ExerciseController>();
-                          await exerciseController.toggleFavorite(widget.exercise.id);
-                          if (mounted) {
-                            setState(() {
-                              _isFavorite = !_isFavorite;
-                            });
-                          }
-                        },
+                      const SizedBox(width: 5),
+                      SizedBox(  // Ancho fijo para el botón de favoritos
+                        width: 50,
+                        child: ActionButton(
+                          text: _isFavorite ? 'Quitar' : 'Agregar',
+                          icon: _isFavorite ? Icons.favorite : Icons.favorite_border,
+                          isSmall: true,
+                          color: _isFavorite ? Colors.red : Colors.blue,
+                          onPressed: () async {
+                            final exerciseController = context.read<ExerciseController>();
+                            await exerciseController.toggleFavorite(widget.exercise.id);
+                            if (mounted) {
+                              setState(() {
+                                _isFavorite = !_isFavorite;
+                              });
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -369,18 +376,23 @@ class ActionButton extends StatelessWidget {
         elevation: 2,
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, size: isSmall ? 20 : 24),
-          if (!isSmall) const SizedBox(width: 8),
-          if (!isSmall)
-            Text(
-              text,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+          if (!isSmall) ...[
+            const SizedBox(width: 8),
+            Flexible(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
+          ],
         ],
       ),
     );
