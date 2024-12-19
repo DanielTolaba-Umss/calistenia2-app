@@ -34,7 +34,11 @@ class ExerciseCategoriesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-        title: Text("Ejercicios para $difficulty"),
+        title: Text("Ejercicios para $difficulty",
+          style: const TextStyle(
+            fontSize: 22,
+            color: Colors.white,
+          ),),
         centerTitle: true,
       ),
       body: Container(

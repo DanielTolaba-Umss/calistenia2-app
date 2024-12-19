@@ -52,13 +52,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 20),
 
                   // Logo pequeño
                   Center(
                     child: Container(
-                      height: 80,
-                      width: 80,
+                      height: 150,
+                      width: 150,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
@@ -70,16 +70,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ],
                       ),
-                      child: Center(
+                      child: ClipOval(
                         child: Image.asset(
-                          'assets/images/logo.png',
-                          width: 50,
-                          height: 50,
+                          'assets/logo_app.jpg',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover, // Asegura que la imagen llene todo el espacio circular
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 30),
 
                   CustomTextField(
                     hint: 'Nombre',
@@ -95,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 16),
 
                   CustomTextField(
-                    hint: 'Email',
+                    hint: 'Correo',
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     icon: Icons.email,
@@ -147,7 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: const Text(
                         'Ya tengo una cuenta',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black54,
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),

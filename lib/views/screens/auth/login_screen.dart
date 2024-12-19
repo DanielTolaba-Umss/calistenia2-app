@@ -33,11 +33,11 @@ class _LoginScreenState extends State<LoginScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 10),
                   // Logo y título de la app
                   Container(
-                    height: 120,
-                    width: 120,
+                    height: 180,
+                    width: 180,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -49,19 +49,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    child: Center(
+                    child: ClipOval(
                       child: Image.asset(
-                        'assets/images/logo.png',
+                        'assets/logo_app.jpg',
                         width: 80,
                         height: 80,
+                        fit: BoxFit.cover, // Esto asegura que la imagen llene el espacio circular
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 10),
                   Text(
-                    'CaliFit',
+                    'CaliXperience',
                     style: AppTheme.titleStyle.copyWith(
-                      fontSize: 36,
+                      fontSize: 40,
                       color: Colors.white,
                     ),
                   ),
@@ -70,11 +71,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     'Tu compañero de calistenia',
                     style: AppTheme.subtitleStyle,
                   ),
-                  const SizedBox(height: 48),
+                  const SizedBox(height: 40),
 
                   // Campos de entrada
                   CustomTextField(
-                    hint: 'Email',
+                    hint: 'Correo',
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     icon: Icons.email,

@@ -71,66 +71,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
 
                 // Profile image
-                Center(
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 4,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              blurRadius: 10,
-                              offset: const Offset(0, 5),
-                            ),
-                          ],
-                        ),
-                        child: const CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          child: Icon(
-                            Icons.person,
-                            size: 60,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 2,
-                            ),
-                          ),
-                          child: const Icon(
-                            Icons.edit,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 50),
 
                 // TabBar
                 Container(
                   color: Colors.white,
-                  child: TabBar(
+                  child: const TabBar(
                     labelColor: Colors.blue,
                     unselectedLabelColor: Colors.grey,
                     indicatorColor: Colors.blue,
@@ -150,12 +97,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         // Tab de Perfil
                         SingleChildScrollView(
                           padding: const EdgeInsets.all(24),
+
                           child: Form(
                             key: _formKey,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
+                                const SizedBox(height: 40),
                                 CustomTextField(
+
                                   hint: 'Nombre',
                                   controller: _nameController,
                                   icon: Icons.person,

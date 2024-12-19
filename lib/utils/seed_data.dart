@@ -30,6 +30,23 @@ class DatabaseSeeder {
 
       final exercises = [
         {
+          "name": "Puente de Glúteos",
+          "description": "Ejercicio básico que trabaja los glúteos y el core. Ideal para principiantes.",
+          "iconName": "accessibility_new",
+          "difficulty": "Principiante",
+          "category": "Glúteos",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Glúteos", "Core", "Piernas"],
+          "images": [
+            "assets/images/exercises/puente_gluteos1.jpg",
+            "assets/images/exercises/puente_gluteos2.jpg"
+          ],
+          "repetitions": 12,
+          "sets": 3,
+          "restTime": 60,
+        },
+        {
           "name": "Dominadas",
           "description": "Ideal para trabajar la espalda y los músculos del tren superior. Ejercicio fundamental para desarrollar fuerza y masa muscular.",
           "iconName": "fitness_center",
@@ -41,28 +58,78 @@ class DatabaseSeeder {
           "images": [
             "assets/images/exercises/dominadas1.jpg",
             "assets/images/exercises/dominadas2.jpg",
-            "assets/images/exercises/dominadas3.jpg",
+
           ],
           "repetitions": 8,
           "sets": 3,
           "restTime": 90,
         },
         {
+          "name": "Fondo en Banco",
+          "description": "Ejercicio enfocado en tríceps y pecho. Ideal para principiantes e intermedios. Se realiza colocando las manos en un banco detrás del cuerpo.",
+          "iconName": "bench",
+          "difficulty": "Principiante",
+          "category": "Tríceps",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Tríceps", "Pectorales", "Hombros"],
+          "images": [
+            "assets/images/exercises/fondo-bancas1.jpg",
+            "assets/images/exercises/fondo-bancas2.jpg"
+          ],
+          "repetitions": 12,
+          "sets": 3,
+          "restTime": 60
+        },
+        {
           "name": "Flexiones",
-          "description": "Ejercicio fundamental para el pecho y los tríceps. Excelente para construir fuerza en el tren superior y la estabilidad del core.",
+          "description": "Ejercicio fundamental para el pecho y los tríceps. Excelente para construir fuerza en el tren superior.",
           "iconName": "push_pin",
           "difficulty": "Principiante",
           "category": "Pecho",
           "createdBy": _auth.currentUser!.uid,
           "createdAt": FieldValue.serverTimestamp(),
-          "musclesInvolved": ["Pectorales", "Tríceps", "Hombros", "Core"],
+          "musclesInvolved": ["Pectorales", "Tríceps", "Hombros"],
           "images": [
-            "assets/images/exercises/dominadas1.jpg",
-            "assets/images/exercises/dominadas2.jpg",
-            "assets/images/exercises/dominadas3.jpg",
+            "assets/images/exercises/flexiones1.jpg",
+            "assets/images/exercises/flexiones2.jpg",
           ],
           "repetitions": 12,
           "sets": 4,
+          "restTime": 60,
+        },
+        {
+          "name": "Plancha Abdominal",
+          "description": "Ejercicio isométrico básico para fortalecer el core y la estabilidad general. Ideal para todos los niveles.",
+          "iconName": "timelapse",
+          "difficulty": "Principiante",
+          "category": "Core",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Core", "Espalda baja", "Hombros"],
+          "images": [
+            "assets/images/exercises/plancha abdomi nal.gif",
+          ],
+          "repetitions": null, // Es un ejercicio por tiempo
+          "sets": 3,
+          "restTime": 60,
+          "duration": 30 // Duración en segundos
+        },
+        {
+          "name": "Flexiones Inclinadas",
+          "description": "Las flexiones inclinadas se realizan con las manos en una superficie elevada. Son una variación más fácil de las flexiones tradicionales, enfocadas en el pecho y los tríceps.",
+          "iconName": "arrow_upward",
+          "difficulty": "Principiante",
+          "category": "Pecho",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Pectorales", "Tríceps", "Hombros"],
+          "images": [
+            "assets/images/exercises/flexion-inclinado1.jpg",
+            "assets/images/exercises/flexion-inclinado2.jpg"
+          ],
+          "repetitions": 12,
+          "sets": 3,
           "restTime": 60,
         },
         {
@@ -84,8 +151,8 @@ class DatabaseSeeder {
           "restTime": 90,
         },
         {
-          "name": "Sentadillas",
-          "description": "Ejercicio fundamental para el desarrollo de las piernas. Trabaja múltiples grupos musculares y mejora la fuerza funcional.",
+          "name": "Sentadilla",
+          "description": "Ejercicio fundamental para trabajar piernas y glúteos. Mejora la fuerza funcional y la estabilidad general.",
           "iconName": "directions_walk",
           "difficulty": "Principiante",
           "category": "Piernas",
@@ -93,15 +160,99 @@ class DatabaseSeeder {
           "createdAt": FieldValue.serverTimestamp(),
           "musclesInvolved": ["Cuádriceps", "Glúteos", "Isquiotibiales", "Core"],
           "images": [
-            "assets/images/exercises/dominadas1.jpg",
-            "assets/images/exercises/dominadas2.jpg",
-            "assets/images/exercises/dominadas3.jpg",
+            "assets/images/exercises/sentadilla1.jpg",
+            "assets/images/exercises/sentadilla2.jpg"
           ],
           "repetitions": 15,
-          "sets": 4,
-          "restTime": 60,
+          "sets": 3,
+          "restTime": 60
         },
         // Ejercicios Intermedios
+        {
+          "name": "Sentadilla Búlgara",
+          "description": "Ejercicio unilateral avanzado que fortalece las piernas y mejora el equilibrio. Se realiza con una pierna elevada en una superficie tras el cuerpo.",
+          "iconName": "directions_walk",
+          "difficulty": "Intermedio",
+          "category": "Piernas",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Cuádriceps", "Glúteos", "Core", "Isquiotibiales"],
+          "images": [
+            "assets/images/exercises/sentadilla-bulgara.gif",
+          ],
+          "repetitions": 8,
+          "sets": 3,
+          "restTime": 90
+        },
+        {
+          "name": "Flexiones Diamante",
+          "description": "Las flexiones diamante son una variante de las flexiones tradicionales. Se colocan las manos cerca una de la otra, formando un rombo. Se enfocan en trabajar los tríceps y la parte interna del pecho.",
+          "iconName": "star_border",
+          "difficulty": "Intermedio",
+          "category": "Pecho",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Pectorales", "Tríceps", "Hombros"],
+          "images": [
+            "assets/images/exercises/diamante1.jpg",
+            "assets/images/exercises/diamante2.jpg"
+          ],
+          "repetitions": 10,
+          "sets": 4,
+          "restTime": 90,
+        },
+        {
+          "name": "Flexión Declinada",
+          "description": "Una variación avanzada de las flexiones que enfoca más en la parte superior del pecho y los hombros. Se realiza colocando los pies en una superficie elevada.",
+          "iconName": "fitness_center",
+          "difficulty": "Intermedio",
+          "category": "Pecho",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Pectorales", "Hombros", "Tríceps"],
+          "images": [
+            "assets/images/exercises/flexion-declinada.gif",
+          ],
+          "repetitions": 10,
+          "sets": 4,
+          "restTime": 90
+        },
+        {
+          "name": "Fondo usando dos sillas",
+          "description": "Ejercicio que trabaja principalmente los tríceps y el pecho. Se realiza colocando las manos en dos sillas separadas y los pies apoyados en otra superficie.",
+          "iconName": "accessibility_new",
+          "difficulty": "Intermedio",
+          "category": "Pecho",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Pectorales", "Tríceps", "Hombros"],
+          "images": [
+            "assets/images/exercises/fondo2.1.png",
+            "assets/images/exercises/fondo2.2.png"
+          ],
+          "repetitions": 10,
+          "sets": 4,
+          "restTime": 90
+        },
+        {
+          "name": "Fondos",
+          "description": "Los fondos en la paralela son un ejercicio que trabaja los tríceps, el pecho y los hombros. Se realizan en barras paralelas, bajando el cuerpo y luego empujando hacia arriba.",
+          "iconName": "fitness_center",
+          "difficulty": "Intermedio",
+          "category": "Pecho",
+          "createdBy": _auth.currentUser!.uid,
+          "createdAt": FieldValue.serverTimestamp(),
+          "musclesInvolved": ["Pectorales", "Tríceps", "Hombros"],
+          "images": [
+            "assets/images/exercises/fondos1.jpg",
+            "assets/images/exercises/fondos2.jpg",
+            "assets/images/exercises/fondo2.1.png",
+            "assets/images/exercises/fondo2.2.png",
+          ],
+          "repetitions": 10,
+          "sets": 4,
+          "restTime": 90,
+        },
         {
           "name": "Muscle Up",
           "description": "Ejercicio avanzado que combina dominada explosiva con transición a fondo. Excelente para la fuerza superior.",

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'CaliFit',
+        title: 'CaliXperience',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           useMaterial3: true,

@@ -35,8 +35,8 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      height: 50,
-                      width: 50,
+                      height: 80,
+                      width: 80,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
@@ -48,9 +48,13 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset('assets/images/logo.png'),
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/logo_app.jpg',
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover, // Esto asegura que la imagen llene el espacio circular
+                        ),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -58,9 +62,9 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "CaliFit",
+                          "CaliXperience",
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -69,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                           builder: (context, auth, _) => Text(
                             auth.userModel?.name ?? 'Usuario',
                             style: const TextStyle(
-                              fontSize: 14,
+                              fontSize: 15,
                               color: Colors.white70,
                             ),
                           ),

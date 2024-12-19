@@ -14,7 +14,10 @@ class DifficultyScreen extends StatelessWidget {
         elevation: 0,
         title: const Text(
           "Selecciona tu nivel",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+          ),
         ),
         centerTitle: true,
       ),
@@ -42,14 +45,14 @@ class DifficultyScreen extends StatelessWidget {
                   icon: Icons.star_border,
                   onPressed: () => _navigateToExercises(context, "Principiante"),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 DifficultyButton(
                   difficulty: "Intermedio",
                   description: "Para quienes ya tienen experiencia",
                   icon: Icons.star_half,
                   onPressed: () => _navigateToExercises(context, "Intermedio"),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 DifficultyButton(
                   difficulty: "Avanzado",
                   description: "Ejercicios de alta dificultad",
@@ -101,7 +104,7 @@ class DifficultyButton extends StatelessWidget {
         onTap: onPressed,
         borderRadius: BorderRadius.circular(15),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(10),
           child: Column(
             children: [
               Icon(

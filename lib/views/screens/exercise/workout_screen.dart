@@ -79,6 +79,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                           widget.exercise.name,
                           style: const TextStyle(
                             fontSize: 24,
+
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -90,7 +91,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 // Carrusel de imágenes
                 if (widget.exercise.images.isNotEmpty)
                   SizedBox(
-                    height: 250,
+                    height: 350,
                     child: Swiper(
                       itemBuilder: (context, index) {
                         return Container(
@@ -163,15 +164,18 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                       ),
                     ),
                   ),
-
+                const SizedBox(height: 10),
                 // Información del ejercicio
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
                   padding: const EdgeInsets.all(20),
+
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
+
                     boxShadow: [
+
                       BoxShadow(
                         color: Colors.black.withOpacity(0.1),
                         blurRadius: 10,
@@ -179,15 +183,18 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                       ),
                     ],
                   ),
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+
                     children: [
+                      const SizedBox(height: 10),
                       InfoRow(
                         title: 'Dificultad',
                         value: widget.exercise.difficulty,
                         icon: Icons.signal_cellular_alt,
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       InfoRow(
                         title: 'Músculos implicados',
                         value: widget.exercise.musclesInvolved.join(', '),
@@ -227,7 +234,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
 
                 // Botones de acción
                 Padding(
